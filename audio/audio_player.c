@@ -41,6 +41,8 @@
 #include "i2s_stream.h"
 #include "vfs_stream.h"
 
+const mp_obj_type_t audio_player_type;
+
 typedef struct _audio_player_obj_t {
     mp_obj_base_t base;
     mp_obj_t callback;
@@ -367,9 +369,10 @@ STATIC const mp_rom_map_elem_t player_locals_dict_table[] = {
 
 STATIC MP_DEFINE_CONST_DICT(player_locals_dict, player_locals_dict_table);
 
-const mp_obj_type_t audio_player_type = {
-    { &mp_type_type },
-    .name = MP_QSTR_player,
-    .make_new = audio_player_make_new,
-    .locals_dict = (mp_obj_dict_t *)&player_locals_dict,
-};
+MP_DEFINE_CONST_OBJ_TYPE(
+    audio_player_type,
+    MP_QSTR_player,
+    MP_TYPE_FLAG_NONE,
+    make_new, audio_player_make_new,
+    locals_dict, &player_locals_dict
+    );
