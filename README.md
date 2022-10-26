@@ -16,6 +16,8 @@ __micropython__
 
 Include adf components
 
+master commit id: 64af916c111b61bce82c00f356a6b1cb81946d87
+
 ## build
 
 Refer below link to build micropython with audio module.
