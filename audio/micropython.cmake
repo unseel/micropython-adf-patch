@@ -4,6 +4,7 @@ add_library(usermod_audio INTERFACE)
 # Add our source files to the lib
 target_sources(usermod_audio INTERFACE
     ${CMAKE_CURRENT_LIST_DIR}/audio_player.c
+    ${CMAKE_CURRENT_LIST_DIR}/audio_recorder.c
     ${CMAKE_CURRENT_LIST_DIR}/modaudio.c
     ${CMAKE_CURRENT_LIST_DIR}/vfs_stream.c
 )
