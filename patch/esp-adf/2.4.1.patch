@@ -1,0 +1,29 @@
+diff --git a/components/esp_peripherals/CMakeLists.txt b/components/esp_peripherals/CMakeLists.txt
+index 322d4aa..278fbaa 100644
+--- a/components/esp_peripherals/CMakeLists.txt
++++ b/components/esp_peripherals/CMakeLists.txt
+@@ -30,19 +30,19 @@ list(APPEND COMPONENT_SRCS ./esp_peripherals.c
+                 ./lib/gpio_isr/gpio_isr.c)
+
+ IF (CONFIG_IDF_TARGET STREQUAL "esp32")
+-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./lib/sdcard ./lib/touch)
+-list(APPEND COMPONENT_SRCS ./lib/sdcard/sdcard.c ./periph_sdcard.c ./periph_touch.c ./lib/touch/touch.c)
++list(APPEND COMPONENT_ADD_INCLUDEDIRS ./lib/touch)
++list(APPEND COMPONENT_SRCS ./periph_touch.c ./lib/touch/touch.c)
+
+ ELSEIF (CONFIG_IDF_TARGET STREQUAL "esp32s3")
+-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./lib/sdcard ./lib/touch)
+-list(APPEND COMPONENT_SRCS ./lib/sdcard/sdcard.c ./periph_sdcard.c ./periph_touch.c ./lib/touch/touch.c)
++list(APPEND COMPONENT_ADD_INCLUDEDIRS ./lib/touch)
++list(APPEND COMPONENT_SRCS ./periph_touch.c ./lib/touch/touch.c)
+
+ ELSEIF((ONFIG_IDF_TARGET STREQUAL "esp32s2"))
+ list(APPEND COMPONENT_ADD_INCLUDEDIRS ./lib/touch)
+ list(APPEND COMPONENT_SRCS ./periph_touch.c ./lib/touch/touch.c)
+ ENDIF ()
+
+-set(COMPONENT_REQUIRES driver audio_hal esp_adc_cal audio_sal fatfs console audio_pipeline audio_board spiffs display_service esp_dispatcher bt mbedtls wpa_supplicant)
++set(COMPONENT_REQUIRES driver audio_hal esp_adc_cal audio_sal console audio_pipeline audio_board spiffs display_service esp_dispatcher bt mbedtls wpa_supplicant)
+
+ IF (((IDF_VERSION_MAJOR EQUAL 4) AND (IDF_VERSION_MINOR GREATER 3)) OR (IDF_VERSION_MAJOR GREATER 4))
+ list(APPEND COMPONENT_REQUIRES esp_lcd)

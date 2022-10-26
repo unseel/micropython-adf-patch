@@ -1,0 +1,14 @@
+diff --git a/ports/esp32/CMakeLists.txt b/ports/esp32/CMakeLists.txt
+index 7209dd96d..4d53390d5 100644
+--- a/ports/esp32/CMakeLists.txt
++++ b/ports/esp32/CMakeLists.txt
+@@ -18,6 +18,9 @@ if(NOT EXISTS ${MICROPY_BOARD_DIR}/mpconfigboard.cmake)
+     message(FATAL_ERROR "Invalid MICROPY_BOARD specified: ${MICROPY_BOARD}")
+ endif()
+
++# Include ADF components
++set(EXTRA_COMPONENT_DIRS $ENV{ADF_PATH}/components)
++
+ # Include main IDF cmake file.
+ include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+
