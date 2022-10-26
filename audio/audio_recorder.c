@@ -47,6 +47,8 @@ enum {
     MP3
 };
 
+const mp_obj_type_t audio_recorder_type;
+
 typedef struct _audio_recorder_obj_t {
     mp_obj_base_t base;
 
@@ -291,9 +293,11 @@ STATIC const mp_rom_map_elem_t recorder_locals_dict_table[] = {
 
 STATIC MP_DEFINE_CONST_DICT(recorder_locals_dict, recorder_locals_dict_table);
 
-const mp_obj_type_t audio_recorder_type = {
-    { &mp_type_type },
-    .name = MP_QSTR_recorder,
-    .make_new = audio_recorder_make_new,
-    .locals_dict = (mp_obj_dict_t *)&recorder_locals_dict,
-};
+
+MP_DEFINE_CONST_OBJ_TYPE(
+    audio_recorder_type,
+    MP_QSTR_recorder,
+    MP_TYPE_FLAG_NONE,
+    make_new, audio_recorder_make_new,
+    locals_dict, &recorder_locals_dict
+    );
