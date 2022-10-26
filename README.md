@@ -1,6 +1,6 @@
 # micropython patch to work with esp-adf
 
-This is micropython path intended to integrate esp-adf to micropython.
+This is micropython patch intended to integrate esp-adf to latest micropython.
 
 ## audio
 
@@ -10,7 +10,7 @@ The audio directory is copied from [micropython_adf](https://github.com/espressi
 
 __esp-adf__
 
-Remove sdcard & fatfs
+Remove `sdcard` & `fatfs`
 
 __micropython__
 
