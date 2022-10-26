@@ -12,3 +12,31 @@ index 7209dd96d..4d53390d5 100644
  # Include main IDF cmake file.
  include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
+diff --git a/ports/esp32/main.c b/ports/esp32/main.c
+index c543c5b64..f28cdc148 100644
+--- a/ports/esp32/main.c
++++ b/ports/esp32/main.c
+@@ -33,6 +33,7 @@
+ #include "freertos/FreeRTOS.h"
+ #include "freertos/task.h"
+ #include "esp_system.h"
++#include "esp_heap_caps_init.h"
+ #include "nvs_flash.h"
+ #include "esp_task.h"
+ #include "soc/cpu.h"
+@@ -113,13 +114,14 @@ void mp_task(void *pvParameter) {
+             break;
+         case ESP_SPIRAM_SIZE_32MBITS:
+         case ESP_SPIRAM_SIZE_64MBITS:
+-            mp_task_heap_size = 4 * 1024 * 1024;
++            mp_task_heap_size = 3 * 1024 * 1024;
+             break;
+         default:
+             // No SPIRAM, fallback to normal allocation
+             mp_task_heap = NULL;
+             break;
+     }
++    heap_caps_add_region((intptr_t)(mp_task_heap + 3 * 1024 * 1024), (intptr_t)(mp_task_heap + 4 * 1024 * 1024 - 1));
+     #elif CONFIG_ESP32S2_SPIRAM_SUPPORT || CONFIG_ESP32S3_SPIRAM_SUPPORT
+     // Try to use the entire external SPIRAM directly for the heap
+     size_t esp_spiram_size = esp_spiram_get_size();
