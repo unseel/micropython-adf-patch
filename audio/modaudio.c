@@ -99,3 +99,6 @@ const mp_obj_module_t audio_module = {
     .base = { &mp_type_module },
     .globals = (mp_obj_dict_t *)&audio_module_globals,
 };
+
+// Register the module to make it available in Python.
+MP_REGISTER_MODULE(MP_QSTR_audio, audio_module);
